@@ -1,0 +1,13 @@
+storage "s3" {
+  access_key = "{{ .Env.VAULT_S3_ACCESS_KEY }}"
+  secret_key = "{{ .Env.VAULT_S3_SECRET_KEY }}"
+  bucket     = "{{ .Env.VAULT_S3_BUCKET }}"
+  region     = "{{ .Env.VAULT_S3_REGION }}"
+}
+
+listener "tcp" {
+  address     = "0.0.0.0:{{ default .Env.VAULT_PORT "8200"}}"
+  tls_disable = 1
+}
+
+ui = true
